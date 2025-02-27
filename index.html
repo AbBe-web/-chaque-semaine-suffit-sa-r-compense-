@@ -104,6 +104,7 @@
     <script>
         let childName = "";
         let answers = [];
+        let currentQuestion = 0;
 
         function saveName() {
             childName = document.getElementById("childName").value.trim();
@@ -121,6 +122,13 @@
             document.getElementById("not-ready").classList.remove("hidden");
         }
 
+        function startQuestions() {
+            document.getElementById("start").classList.add("hidden");
+            document.getElementById("not-ready").classList.add("hidden");
+            document.getElementById("questionnaire").classList.remove("hidden");
+            showQuestion();
+        }
+
         const questions = [
             "{name} a-t-il contribué sans faillir cette semaine à l’équilibre idyllique de sa famille ?",
             "A-t-il spontanément et régulièrement proposé son aide dans la vie quotidienne : mettre la table, ranger sa chambre, étendre le linge, apporter le petit déjeuner au lit à ses parents, aller chercher les 🥐, …?",
@@ -133,22 +141,12 @@
             "A-t-il fait régulièrement preuve de courage comme il en a coutume ?"
         ];
 
-        let currentQuestion = 0;
-
-        function startQuestions() {
-            questions = questions.map(q => q.replace("{name}", childName));
-            document.getElementById("start").classList.add("hidden");
-            document.getElementById("not-ready").classList.add("hidden");
-            document.getElementById("questionnaire").classList.remove("hidden");
-            showQuestion();
-        }
-
         function showQuestion() {
             if (currentQuestion < questions.length) {
                 let questionnaire = document.getElementById("questionnaire");
                 let questionElement = document.createElement("div");
                 questionElement.classList.add("question");
-                questionElement.innerHTML = `<p>${questions[currentQuestion]}</p>
+                questionElement.innerHTML = `<p>${questions[currentQuestion].replace("{name}", childName)}</p>
                                              <button onclick="recordAnswer(true)">Oui</button>
                                              <button onclick="recordAnswer(false)">Non</button>`;
                 questionnaire.appendChild(questionElement);
@@ -185,7 +183,7 @@
             let printableContent = `<h1>Résumé du questionnaire pour ${childName}</h1>`;
             printableContent += `<p>Date : ${new Date().toLocaleDateString()}</p>`;
             questions.forEach((q, i) => {
-                printableContent += `<p><strong>${q}</strong><br>Réponse: ${answers[i]}</p>`;
+                printableContent += `<p><strong>${q.replace("{name}", childName)}</strong><br>Réponse: ${answers[i] ? "Oui" : "Non"}</p>`;
             });
             printableContent += `<h2>${document.getElementById("final-text").innerHTML}</h2>`;
             printableContent += `<h3>${document.getElementById("response-text").innerHTML}</h3>`;

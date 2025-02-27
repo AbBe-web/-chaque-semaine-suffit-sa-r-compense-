@@ -139,11 +139,6 @@
             showQuestion();
         }
 
-        function notReady() {
-            document.getElementById("start").classList.add("hidden");
-            document.getElementById("not-ready").classList.remove("hidden");
-        }
-
         function showQuestion() {
             if (currentQuestion < questions.length) {
                 let questionnaire = document.getElementById("questionnaire");

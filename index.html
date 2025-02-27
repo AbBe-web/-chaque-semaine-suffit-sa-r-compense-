@@ -181,22 +181,23 @@
 
             document.getElementById("final-message").classList.remove("hidden");
             document.getElementById("result").classList.remove("hidden");
+            document.getElementById("final-message").scrollIntoView({ behavior: "smooth", block: "center" });
         }
 
         function agree() {
             document.getElementById("response-text").innerHTML = `Vous êtes un très honorable membre de la Famille. Votre lucidité bienveillante est remarquable. 🥳😊🥰🥳`;
-            document.getElementById("final-response").classList.remove("hidden");
-            document.getElementById("final-action").classList.remove("hidden");
+            showFinalResponse();
         }
 
         function disagree() {
             document.getElementById("response-text").innerHTML = `Je vous propose de contacter Pierre pour une psychothérapie, car votre manque de positivité est préoccupant 🥰.`;
-            document.getElementById("final-response").classList.remove("hidden");
-            document.getElementById("final-action").classList.remove("hidden");
+            showFinalResponse();
         }
 
-        function printPage() {
-            window.print();
+        function showFinalResponse() {
+            document.getElementById("final-response").classList.remove("hidden");
+            document.getElementById("final-action").classList.remove("hidden");
+            document.getElementById("final-response").scrollIntoView({ behavior: "smooth", block: "center" });
         }
     </script>
 

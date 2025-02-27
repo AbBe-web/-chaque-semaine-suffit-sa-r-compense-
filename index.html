@@ -103,6 +103,8 @@
 
     <script>
         let childName = "";
+        let answers = [];
+        let currentQuestion = 0;
 
         function saveName() {
             childName = document.getElementById("childName").value.trim();
@@ -128,8 +130,6 @@
         ];
 
         let questions = [];
-        let answers = [];
-        let currentQuestion = 0;
 
         function startQuestions() {
             questions = questionsTemplate.map(q => q.replace("{name}", childName));
@@ -160,44 +160,44 @@
         }
 
         function recordAnswer(answer, button) {
-            answers.push(answer);
+            answers.push(answer ? "Oui" : "Non");
             currentQuestion++;
             button.parentElement.querySelectorAll("button").forEach(btn => btn.disabled = true);
             showQuestion();
         }
 
         function showFinalMessage() {
-            let finalText = document.getElementById("final-text");
-            let allYes = answers.every(a => a);
-            let allNo = answers.every(a => !a);
-
-            if (allYes) {
-                finalText.innerHTML = `${childName} a eu un comportement parfait ! Il mérite un hôtel 5 étoiles ou tout autre cadeau 🎁 😇🥰🥳🥰😇.`;
-            } else if (allNo) {
-                finalText.innerHTML = `${childName} doit être réconforté : un animal de compagnie, une soirée cinéma ou une boîte de cannelés La Toque Cuivrée 😢.`;
-            } else {
-                finalText.innerHTML = `${childName} mérite un encouragement : un ensemble de vêtements, une console ou un week-end avec ses amis/famille 🙏👏😇.`;
-            }
-
             document.getElementById("final-message").classList.remove("hidden");
             document.getElementById("result").classList.remove("hidden");
-            document.getElementById("final-message").scrollIntoView({ behavior: "smooth", block: "center" });
         }
 
         function agree() {
             document.getElementById("response-text").innerHTML = `Vous êtes un très honorable membre de la Famille. Votre lucidité bienveillante est remarquable. 🥳😊🥰🥳`;
-            showFinalResponse();
+            document.getElementById("final-response").classList.remove("hidden");
+            document.getElementById("final-action").classList.remove("hidden");
         }
 
         function disagree() {
             document.getElementById("response-text").innerHTML = `Je vous propose de contacter Pierre pour une psychothérapie, car votre manque de positivité est préoccupant 🥰.`;
-            showFinalResponse();
-        }
-
-        function showFinalResponse() {
             document.getElementById("final-response").classList.remove("hidden");
             document.getElementById("final-action").classList.remove("hidden");
-            document.getElementById("final-response").scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+
+        function printPage() {
+            let printableContent = `<h1>Résumé du questionnaire pour ${childName}</h1>`;
+            questions.forEach((q, i) => {
+                printableContent += `<p><strong>${q}</strong> <br>Réponse: ${answers[i]}</p>`;
+            });
+            printableContent += `<h2>${document.getElementById("final-text").innerHTML}</h2>`;
+            printableContent += `<h3>${document.getElementById("response-text").innerHTML}</h3>`;
+
+            let newWin = window.open("");
+            newWin.document.write(printableContent);
+            newWin.document.close();
+            setTimeout(() => {
+                newWin.print();
+                newWin.close();
+            }, 500);
         }
     </script>
 

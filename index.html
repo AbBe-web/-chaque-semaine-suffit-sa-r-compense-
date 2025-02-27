@@ -117,6 +117,11 @@
             document.getElementById("start").classList.remove("hidden");
         }
 
+        function notReady() {
+            document.getElementById("start").classList.add("hidden");
+            document.getElementById("not-ready").classList.remove("hidden");
+        }
+
         const questionsTemplate = [
             "{name} a-t-il contribué sans faillir cette semaine à l’équilibre idyllique de sa famille ?",
             "A-t-il spontanément et régulièrement proposé son aide dans la vie quotidienne : mettre la table, ranger sa chambre, étendre le linge, apporter le petit déjeuner au lit à ses parents, aller chercher les 🥐, …?",
@@ -155,27 +160,28 @@
         }
 
         function recordAnswer(answer, button) {
-            answers.push(answer);
+            answers.push(answer ? "Oui" : "Non");
             currentQuestion++;
             button.parentElement.querySelectorAll("button").forEach(btn => btn.disabled = true);
             showQuestion();
         }
 
-        function showFinalMessage() {
-            let finalText = document.getElementById("final-text");
-            let allYes = answers.every(a => a);
-            let allNo = answers.every(a => !a);
+        function printPage() {
+            let date = new Date().toLocaleDateString();
+            let printableContent = `<h1>Résumé du questionnaire pour ${childName}</h1><p>Date : ${date}</p>`;
+            questions.forEach((q, i) => {
+                printableContent += `<p><strong>${q}</strong> <br>Réponse: ${answers[i]}</p>`;
+            });
+            printableContent += `<h2>${document.getElementById("final-text").innerHTML}</h2>`;
+            printableContent += `<h3>${document.getElementById("response-text").innerHTML}</h3>`;
 
-            if (allYes) {
-                finalText.innerHTML = `Encore une semaine où ${childName} a eu un comportement parfait ! Il mérite une semaine tout frais payés dans un hôtel 5 étoiles avec 3 à 10 personnes de son choix ou tout autre cadeau 🎁 😇🥰🥳🥰😇.`;
-            } else if (allNo) {
-                finalText.innerHTML = `Franchement, c’est incompréhensible … C’est la première fois depuis qu’il/elle est né.e ! Il/elle doit être réconforté.e : un animal de compagnie, une soirée cinéma ou une boîte de cannelés La Toque Cuivrée 😢.`;
-            } else {
-                finalText.innerHTML = `${childName} a été proche de la perfection cette semaine 😇 Il mérite un encouragement : un ensemble de vêtements, une console ou un week-end avec ses amis/famille 🙏👏😇.`;
-            }
-
-            document.getElementById("final-message").classList.remove("hidden");
-            document.getElementById("result").classList.remove("hidden");
+            let newWin = window.open("");
+            newWin.document.write(printableContent);
+            newWin.document.close();
+            setTimeout(() => {
+                newWin.print();
+                newWin.close();
+            }, 500);
         }
     </script>
 

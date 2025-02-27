@@ -180,16 +180,13 @@
         }
 
         function printPage() {
-            let printableContent = `<h1>Résumé du questionnaire pour ${childName}</h1>`;
-            printableContent += `<p>Date : ${new Date().toLocaleDateString()}</p>`;
-            questions.forEach((q, i) => {
-                printableContent += `<p><strong>${q.replace("{name}", childName)}</strong><br>Réponse: ${answers[i] ? "Oui" : "Non"}</p>`;
-            });
-            printableContent += `<h2>${document.getElementById("final-text").innerHTML}</h2>`;
-            printableContent += `<h3>${document.getElementById("response-text").innerHTML}</h3>`;
-
             let newWin = window.open("");
-            newWin.document.write(printableContent);
+            newWin.document.write(`<h1>Résumé du questionnaire pour ${childName}</h1><p>Date : ${new Date().toLocaleDateString()}</p>`);
+            questions.forEach((q, i) => {
+                newWin.document.write(`<p><strong>${q.replace("{name}", childName)}</strong><br>Réponse: ${answers[i] ? "Oui" : "Non"}</p>`);
+            });
+            newWin.document.write(`<h2>${document.getElementById("final-text").innerHTML}</h2>`);
+            newWin.document.write(`<h3>${document.getElementById("response-text").innerHTML}</h3>`);
             newWin.document.close();
             setTimeout(() => {
                 newWin.print();

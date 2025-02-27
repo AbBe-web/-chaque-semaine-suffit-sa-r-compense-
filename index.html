@@ -86,7 +86,7 @@
             <p id="final-text"></p>
         </div>
 
-        <div id="result" class="hidden">
+        <div id="agree-question" class="hidden">
             <p>Êtes-vous d’accord avec cette proposition ?</p>
             <button onclick="agree()">Oui</button>
             <button onclick="disagree()">Non</button>
@@ -177,18 +177,19 @@
             }
 
             document.getElementById("final-message").classList.remove("hidden");
-            document.getElementById("result").classList.remove("hidden");
+            document.getElementById("agree-question").classList.remove("hidden");
         }
 
-        function printPage() {
-            let content = document.getElementById("container").innerHTML;
-            let printWindow = window.open('', '', 'width=800,height=600');
-            printWindow.document.write(`<html><head><title>Résumé</title></head><body>${content}</body></html>`);
-            printWindow.document.close();
-            setTimeout(() => {
-                printWindow.print();
-                printWindow.close();
-            }, 500);
+        function agree() {
+            document.getElementById("response-text").innerHTML = `Vous êtes un très honorable membre de la Famille. Votre présence est une joie pour chacun 🥳😊🥰🥳`;
+            document.getElementById("final-response").classList.remove("hidden");
+            document.getElementById("final-action").classList.remove("hidden");
+        }
+
+        function disagree() {
+            document.getElementById("response-text").innerHTML = `Je vous propose de contacter le conseil de famille, qui saura trouver les fonds nécessaires (en sollicitant la solidarité familiale) pour vous payer une psychothérapie car être aussi peu positif est sûrement le signe que vous êtes en difficulté et cela nous cause une grande peine 🥰.`;
+            document.getElementById("final-response").classList.remove("hidden");
+            document.getElementById("final-action").classList.remove("hidden");
         }
     </script>
 

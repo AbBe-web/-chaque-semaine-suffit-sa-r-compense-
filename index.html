@@ -172,11 +172,11 @@
             let allNo = answers.every(a => !a);
 
             if (allYes) {
-                finalText.innerHTML = `Encore une semaine où ${childName} a eu un comportement parfait ! Il mérite une semaine tout frais payés dans un hôtel 5 étoiles ou tout autre cadeau 🎁 de son choix 😇🥰🥳🥰😇.`;
+                finalText.innerHTML = `${childName} a eu un comportement parfait ! Il mérite un hôtel 5 étoiles ou tout autre cadeau 🎁 😇🥰🥳🥰😇.`;
             } else if (allNo) {
-                finalText.innerHTML = `Franchement, c’est incompréhensible… Il doit y avoir une explication. ${childName} mérite un réconfort : un animal de compagnie ou une boîte de cannelés La Toque Cuivrée 😢.`;
+                finalText.innerHTML = `${childName} doit être réconforté : un animal de compagnie, une soirée cinéma ou une boîte de cannelés La Toque Cuivrée 😢.`;
             } else {
-                finalText.innerHTML = `${childName} a été proche de la perfection cette semaine 😇 Il mérite un encouragement : un ensemble de vêtements, une console ou un week-end avec ses amis/famille 🙏👏😇.`;
+                finalText.innerHTML = `${childName} mérite un encouragement : un ensemble de vêtements, une console ou un week-end avec ses amis/famille 🙏👏😇.`;
             }
 
             document.getElementById("final-message").classList.remove("hidden");
@@ -184,15 +184,19 @@
         }
 
         function agree() {
-            document.getElementById("response-text").innerHTML = `Vous êtes un très honorable membre de la Famille. Votre lucidité bienveillante est remarquable. Votre présence est une joie pour chacun 🥳😊🥰🥳.`;
+            document.getElementById("response-text").innerHTML = `Vous êtes un très honorable membre de la Famille. Votre lucidité bienveillante est remarquable. 🥳😊🥰🥳`;
             document.getElementById("final-response").classList.remove("hidden");
             document.getElementById("final-action").classList.remove("hidden");
         }
 
         function disagree() {
-            document.getElementById("response-text").innerHTML = `Je vous propose de contacter le parrain de la famille, Pierre... 🥰`;
+            document.getElementById("response-text").innerHTML = `Je vous propose de contacter Pierre pour une psychothérapie, car votre manque de positivité est préoccupant 🥰.`;
             document.getElementById("final-response").classList.remove("hidden");
             document.getElementById("final-action").classList.remove("hidden");
+        }
+
+        function printPage() {
+            window.print();
         }
     </script>
 

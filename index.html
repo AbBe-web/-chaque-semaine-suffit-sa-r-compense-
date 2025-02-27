@@ -122,20 +122,21 @@
         }
 
         const questions = [
-            "A-t-il contribué sans faillir cette semaine à l’équilibre familial ?",
-            "A-t-il spontanément proposé son aide à la maison ?",
+            "{name} a-t-il contribué sans faillir cette semaine à l’équilibre idyllique de sa famille ?",
+            "A-t-il spontanément et régulièrement proposé son aide dans la vie quotidienne : mettre la table, ranger sa chambre, étendre le linge, apporter le petit déjeuner au lit à ses parents, aller chercher les 🥐, …?",
             "A-t-il toujours fait ses devoirs sans rechigner ?",
-            "A-t-il fait le maximum pour avoir de bonnes notes ?",
-            "A-t-il été indulgent envers ses parents ?",
-            "A-t-il été adorable avec sa sœur/ses frères ?",
-            "A-t-il eu une hygiène corporelle irréprochable ?",
-            "A-t-il été actif chaque jour ?",
-            "A-t-il fait preuve de courage régulièrement ?"
+            "A-t-il fait le maximum de ce qu’il pouvait faire pour avoir de bonnes notes à l’école ?",
+            "A-t-il été indulgent envers ses parents (même si c’est exceptionnellement nécessaire) parce qu’être un parent parfait c’est impossible ?",
+            "A-t-il été aussi adorable avec sa sœur/ses frères qu’elle/ils mérite/nt ?",
+            "A-t-il eu une hygiène corporelle et dentaire irréprochable sans qu’il soit nécessaire de le menacer de privation de gâteau basque pendant 7 ans (… de malheur 😢) ?",
+            "A-t-il été bien actif c’est-à-dire au moins 1h par jour avec parfois des activités intenses ?",
+            "A-t-il fait régulièrement preuve de courage comme il en a coutume ?"
         ];
 
         let currentQuestion = 0;
 
         function startQuestions() {
+            questions = questions.map(q => q.replace("{name}", childName));
             document.getElementById("start").classList.add("hidden");
             document.getElementById("not-ready").classList.add("hidden");
             document.getElementById("questionnaire").classList.remove("hidden");
@@ -180,16 +181,22 @@
             document.getElementById("agree-question").classList.remove("hidden");
         }
 
-        function agree() {
-            document.getElementById("response-text").innerHTML = `Vous êtes un très honorable membre de la Famille. Votre présence est une joie pour chacun 🥳😊🥰🥳`;
-            document.getElementById("final-response").classList.remove("hidden");
-            document.getElementById("final-action").classList.remove("hidden");
-        }
+        function printPage() {
+            let printableContent = `<h1>Résumé du questionnaire pour ${childName}</h1>`;
+            printableContent += `<p>Date : ${new Date().toLocaleDateString()}</p>`;
+            questions.forEach((q, i) => {
+                printableContent += `<p><strong>${q}</strong><br>Réponse: ${answers[i]}</p>`;
+            });
+            printableContent += `<h2>${document.getElementById("final-text").innerHTML}</h2>`;
+            printableContent += `<h3>${document.getElementById("response-text").innerHTML}</h3>`;
 
-        function disagree() {
-            document.getElementById("response-text").innerHTML = `Je vous propose de contacter le conseil de famille, qui saura trouver les fonds nécessaires (en sollicitant la solidarité familiale) pour vous payer une psychothérapie car être aussi peu positif est sûrement le signe que vous êtes en difficulté et cela nous cause une grande peine 🥰.`;
-            document.getElementById("final-response").classList.remove("hidden");
-            document.getElementById("final-action").classList.remove("hidden");
+            let newWin = window.open("");
+            newWin.document.write(printableContent);
+            newWin.document.close();
+            setTimeout(() => {
+                newWin.print();
+                newWin.close();
+            }, 500);
         }
     </script>
 

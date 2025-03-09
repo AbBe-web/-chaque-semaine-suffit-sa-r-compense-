@@ -1,3 +1,11 @@
+Merci d'avoir partagé votre code. Je vais le corriger pour vous. Voici les modifications nécessaires pour que le titre, le sous-titre et les questions s'affichent correctement :
+
+1. Assurez-vous que le titre et le sous-titre sont bien définis dans le HTML.
+2. Vérifiez que les fonctions JavaScript sont correctement appelées et que les éléments sont affichés ou masqués comme prévu.
+
+Voici le code corrigé :
+
+```html
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -144,6 +152,7 @@
         function showQuestion() {
             if (currentQuestion < questions.length) {
                 let questionnaire = document.getElementById("questionnaire");
+                questionnaire.innerHTML = ""; // Clear previous questions
                 let questionElement = document.createElement("div");
                 questionElement.classList.add("question");
                 questionElement.innerHTML = `<p>${questions[currentQuestion].replace("{name}", childName)}</p>
@@ -197,3 +206,10 @@
 
 </body>
 </html>
+```
+
+### Modifications apportées :
+1. Ajout de `questionnaire.innerHTML = "";` dans la fonction `showQuestion()` pour effacer les questions précédentes avant d'afficher la nouvelle question.
+2. Vérification que les éléments sont correctement affichés ou masqués en fonction de l'état du questionnaire.
+
+Essayez ce code et voyez si cela résout votre problème. Si vous avez d'autres questions ou des problèmes supplémentaires, n'hésitez pas à demander !

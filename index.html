@@ -1,9 +1,9 @@
-Merci d'avoir partagé votre code. Je vais le corriger pour vous. Voici les modifications nécessaires pour que le titre, le sous-titre et les questions s'affichent correctement :
+Bien sûr, je vais m'assurer que les fonctions `agree()` et `disagree()` sont correctement définies et que les phrases à afficher sont bien présentes dans le code. Voici les modifications nécessaires :
 
-1. Assurez-vous que le titre et le sous-titre sont bien définis dans le HTML.
-2. Vérifiez que les fonctions JavaScript sont correctement appelées et que les éléments sont affichés ou masqués comme prévu.
+1. Ajouter les fonctions `agree()` et `disagree()` pour gérer les réponses à la question "Êtes-vous d’accord avec cette proposition ?".
+2. Mettre à jour le code pour afficher les messages appropriés en fonction de la réponse de l'utilisateur.
 
-Voici le code corrigé :
+Voici le code mis à jour :
 
 ```html
 <!DOCTYPE html>
@@ -188,6 +188,22 @@ Voici le code corrigé :
             document.getElementById("agree-question").classList.remove("hidden");
         }
 
+        function agree() {
+            let responseText = document.getElementById("response-text");
+            responseText.innerHTML = `Merci d'être d'accord avec notre proposition. Nous espérons que ${childName} continuera sur cette voie !`;
+            document.getElementById("final-response").classList.remove("hidden");
+            document.getElementById("agree-question").classList.add("hidden");
+            document.getElementById("final-action").classList.remove("hidden");
+        }
+
+        function disagree() {
+            let responseText = document.getElementById("response-text");
+            responseText.innerHTML = `Nous comprenons votre point de vue. N'hésitez pas à nous contacter pour discuter davantage.`;
+            document.getElementById("final-response").classList.remove("hidden");
+            document.getElementById("agree-question").classList.add("hidden");
+            document.getElementById("final-action").classList.remove("hidden");
+        }
+
         function printPage() {
             let newWin = window.open("");
             newWin.document.write(`<h1>Résumé du questionnaire pour ${childName}</h1><p>Date : ${new Date().toLocaleDateString()}</p>`);
@@ -209,7 +225,7 @@ Voici le code corrigé :
 ```
 
 ### Modifications apportées :
-1. Ajout de `questionnaire.innerHTML = "";` dans la fonction `showQuestion()` pour effacer les questions précédentes avant d'afficher la nouvelle question.
-2. Vérification que les éléments sont correctement affichés ou masqués en fonction de l'état du questionnaire.
+1. Ajout des fonctions `agree()` et `disagree()` pour gérer les réponses à la question "Êtes-vous d’accord avec cette proposition ?".
+2. Mise à jour des messages à afficher en fonction de la réponse de l'utilisateur.
 
 Essayez ce code et voyez si cela résout votre problème. Si vous avez d'autres questions ou des problèmes supplémentaires, n'hésitez pas à demander !

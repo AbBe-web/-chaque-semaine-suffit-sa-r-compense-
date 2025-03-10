@@ -1,11 +1,3 @@
-Bien sûr, je vais m'assurer que les fonctions `agree()` et `disagree()` sont correctement définies et que les phrases à afficher sont bien présentes dans le code. Voici les modifications nécessaires :
-
-1. Ajouter les fonctions `agree()` et `disagree()` pour gérer les réponses à la question "Êtes-vous d’accord avec cette proposition ?".
-2. Mettre à jour le code pour afficher les messages appropriés en fonction de la réponse de l'utilisateur.
-
-Voici le code mis à jour :
-
-```html
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -139,7 +131,7 @@ Voici le code mis à jour :
 
         const questions = [
             "{name} a-t-il contribué sans faillir cette semaine à l’équilibre idyllique de sa famille ?",
-            "A-t-il spontanément et régulièrement proposé son aide dans la vie quotidienne : mettre la table, ranger sa chambre, étendre le linge, apporter le petit déjeuner au lit à ses parents, aller chercher les 🥐, …?",
+            "A-t-il spontanément et régulièrement proposé son aide dans la vie quotidienne : mettre la table, ranger sa chambre, étendre le linge, apporter le petit déjeuner au lit à ses parents, aller chercher les 🥐, … ?",
             "A-t-il toujours fait ses devoirs sans rechigner ?",
             "A-t-il fait le maximum de ce qu’il pouvait faire pour avoir de bonnes notes à l’école ?",
             "A-t-il été indulgent envers ses parents (même si c’est exceptionnellement nécessaire) parce qu’être un parent parfait c’est impossible ?",
@@ -159,7 +151,9 @@ Voici le code mis à jour :
                                              <button onclick="recordAnswer(true)">Oui</button>
                                              <button onclick="recordAnswer(false)">Non</button>`;
                 questionnaire.appendChild(questionElement);
-                questionElement.scrollIntoView({ behavior: "smooth", block: "center" });
+
+                // Scroll the new question into view, with smooth scroll and at the top of the page
+                questionElement.scrollIntoView({ behavior: "smooth", block: "start" });
             } else {
                 showFinalMessage();
             }
@@ -186,22 +180,31 @@ Voici le code mis à jour :
 
             document.getElementById("final-message").classList.remove("hidden");
             document.getElementById("agree-question").classList.remove("hidden");
+
+            // Scroll the final message into view
+            document.getElementById("final-message").scrollIntoView({ behavior: "smooth", block: "start" });
         }
 
         function agree() {
             let responseText = document.getElementById("response-text");
-            responseText.innerHTML = `Merci d'être d'accord avec notre proposition. Nous espérons que ${childName} continuera sur cette voie !`;
+            responseText.innerHTML = `Vous êtes un très honorable membre de la Famille. Votre présence est une joie pour chacun 🥳😊🥰 🥳.`;
             document.getElementById("final-response").classList.remove("hidden");
             document.getElementById("agree-question").classList.add("hidden");
             document.getElementById("final-action").classList.remove("hidden");
+
+            // Scroll to the final response
+            document.getElementById("final-response").scrollIntoView({ behavior: "smooth", block: "start" });
         }
 
         function disagree() {
             let responseText = document.getElementById("response-text");
-            responseText.innerHTML = `Nous comprenons votre point de vue. N'hésitez pas à nous contacter pour discuter davantage.`;
+            responseText.innerHTML = `Je vous propose de contacter le conseil de famille, qui saura trouver les fonds nécessaires (en sollicitant la solidarité familiale) pour vous payer une psychothérapie car être aussi peu positif est sûrement le signe que vous êtes en difficulté et cela nous cause une grande peine 🥰.`;
             document.getElementById("final-response").classList.remove("hidden");
             document.getElementById("agree-question").classList.add("hidden");
             document.getElementById("final-action").classList.remove("hidden");
+
+            // Scroll to the final response
+            document.getElementById("final-response").scrollIntoView({ behavior: "smooth", block: "start" });
         }
 
         function printPage() {
@@ -222,10 +225,3 @@ Voici le code mis à jour :
 
 </body>
 </html>
-```
-
-### Modifications apportées :
-1. Ajout des fonctions `agree()` et `disagree()` pour gérer les réponses à la question "Êtes-vous d’accord avec cette proposition ?".
-2. Mise à jour des messages à afficher en fonction de la réponse de l'utilisateur.
-
-Essayez ce code et voyez si cela résout votre problème. Si vous avez d'autres questions ou des problèmes supplémentaires, n'hésitez pas à demander !

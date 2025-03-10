@@ -54,6 +54,24 @@
                 display: none;
             }
         }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+
+            #container {
+                padding: 15px;
+            }
+
+            button {
+                max-width: 100%;
+            }
+
+            .question {
+                padding: 15px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -139,72 +157,31 @@
             "A-t-il/elle eu une hygiène corporelle et dentaire irréprochable sans qu’il soit nécessaire de le menacer de privation de sa patisserie préférée pendant 7 ans (… de malheur 😢) ?",
             "A-t-il/elle été bien actif c’est-à-dire au moins 1h par jour avec parfois des activités intenses ?",
             "A-t-il/elle fait régulièrement preuve de courage comme il en a coutume ?",
-            "A-t-il/elle réussi à exprimer ses besoins de façon calme et posée sans méconnaitre ceux de son entourage ?"
+            "A-t-il/elle réussi à exprimer ses besoins de façon calme et posée sans méconnaitre ceux de son entourage ?",
+            "A-t-il/elle participé à des activités extrascolaires ou des loisirs créatifs cette semaine ?"
         ];
 
-       function showQuestion() {
-    if (currentQuestion < questions.length) {
-        let questionnaire = document.getElementById("questionnaire");
+        function showQuestion() {
+            if (currentQuestion < questions.length) {
+                let questionnaire = document.getElementById("questionnaire");
 
-        // Créer un nouvel élément pour chaque question
-        let questionElement = document.createElement("div");
-        questionElement.classList.add("question");
-        questionElement.innerHTML = `<p>${questions[currentQuestion].replace("{name}", childName)}</p>
-                                     <button onclick="recordAnswer(true)">Oui</button>
-                                     <button onclick="recordAnswer(false)">Non</button>`;
+                // Créer un nouvel élément pour chaque question
+                let questionElement = document.createElement("div");
+                questionElement.classList.add("question");
+                questionElement.innerHTML = `<p>${questions[currentQuestion].replace("{name}", childName)}</p>
+                                             <button onclick="recordAnswer(true)">Oui</button>
+                                             <button onclick="recordAnswer(false)">Non</button>`;
 
-        // Ajouter la nouvelle question à l'élément questionnaire sans supprimer les précédentes
-        questionnaire.appendChild(questionElement);
+                // Ajouter la nouvelle question à l'élément questionnaire sans supprimer les précédentes
+                questionnaire.appendChild(questionElement);
 
-        // Scroller vers la nouvelle question
-        questionElement.scrollIntoView({ behavior: "smooth", block: "start" });
+                // Scroller vers la nouvelle question
+                questionElement.scrollIntoView({ behavior: "smooth", block: "start" });
 
-        currentQuestion++;
-    } else {
-        showFinalMessage();
-    }
-}
-
-function showFinalMessage() {
-    let finalText = document.getElementById("final-text");
-    let allYes = answers.every(a => a);
-    let allNo = answers.every(a => !a);
-
-    if (allYes) {
-        finalText.innerHTML = `Encore une semaine où ${childName} a eu un comportement parfait ! Il mérite une semaine à l'hôtel 5 étoiles ! 🎁😇`;
-    } else if (allNo) {
-        finalText.innerHTML = `Franchement, c’est incompréhensible... ${childName} mérite un réconfort : un animal de compagnie, cinéma ou cannelés 😢.`;
-    } else {
-        finalText.innerHTML = `${childName} a été proche de la perfection et mérite un encouragement : vêtements, console ou week-end 🙏👏😇.`;
-    }
-
-    // Afficher la question d'accord avec la recommandation
-    document.getElementById("final-message").classList.remove("hidden");
-    document.getElementById("agree-question").classList.remove("hidden");
-}
-
-// Cette fonction est déclenchée quand l'utilisateur répond "oui" ou "non" à la question de la recommandation
-function agree() {
-    let responseText = document.getElementById("response-text");
-    responseText.innerHTML = `Merci d'être d'accord avec notre proposition. Nous espérons que ${childName} continuera sur cette voie !`;
-    document.getElementById("final-response").classList.remove("hidden");
-    document.getElementById("agree-question").classList.add("hidden");
-    document.getElementById("final-action").classList.remove("hidden");
-}
-
-function disagree() {
-    let responseText = document.getElementById("response-text");
-    responseText.innerHTML = `Nous comprenons votre point de vue. N'hésitez pas à nous contacter pour discuter davantage.`;
-    document.getElementById("final-response").classList.remove("hidden");
-    document.getElementById("agree-question").classList.add("hidden");
-    document.getElementById("final-action").classList.remove("hidden");
-}
-
-
-        function recordAnswer(answer) {
-            answers.push(answer);
-            currentQuestion++;
-            showQuestion();
+                currentQuestion++;
+            } else {
+                showFinalMessage();
+            }
         }
 
         function showFinalMessage() {
@@ -220,6 +197,7 @@ function disagree() {
                 finalText.innerHTML = `${childName} a été proche de la perfection et mérite un encouragement : vêtements, console ou week-end 🙏👏😇.`;
             }
 
+            // Afficher la question d'accord avec la recommandation
             document.getElementById("final-message").classList.remove("hidden");
             document.getElementById("agree-question").classList.remove("hidden");
 
@@ -247,6 +225,11 @@ function disagree() {
 
             // Scroll to the final response
             document.getElementById("final-response").scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+
+        function recordAnswer(answer) {
+            answers.push(answer);
+            showQuestion();
         }
 
         function printPage() {

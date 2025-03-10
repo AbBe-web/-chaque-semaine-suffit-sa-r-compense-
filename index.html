@@ -95,7 +95,7 @@
         </div>
 
         <div id="not-ready" class="hidden">
-            <p>Vous avez raison de prendre votre temps. Il est précieux. Cliquez juste sur "Je suis prêt quand cela sera le cas et surtout ne vous pressez pas, la précipitation est mauvaise conseillère."</p>
+            <p>Vous avez raison de prendre votre temps. Il est précieux. Cliquez juste sur "Je suis prêt" quand cela sera le cas et surtout ne vous pressez pas, la précipitation est mauvaise conseillère.</p>
             <button onclick="startQuestions()">Je suis prêt</button>
         </div>
 
@@ -152,12 +152,12 @@
             "{name} a-t-il/elle contribué sans faillir cette semaine à l’équilibre idyllique de sa famille ?",
             "A-t-il/elle spontanément et régulièrement proposé son aide dans la vie quotidienne : mettre la table, ranger sa chambre, étendre le linge, apporter le petit déjeuner au lit à ses parents, aller chercher les 🥐, … ?",
             "A-t-il/elle toujours fait ses devoirs sans rechigner ?",
-            "A-t-il/elle fait le maximum de ce qu’il pouvait faire pour avoir de bonnes notes à l’école ?",
+            "A-t-il/elle fait le maximum de ce qu’il/elle pouvait faire pour avoir de bonnes notes à l’école ?",
             "A-t-il/elle été indulgent envers ses parents (même si c’est exceptionnellement nécessaire) parce qu’être un parent parfait pendant 100% du temps, c’est impossible ?",
             "A-t-il/elle été aussi adorable avec sa sœur/ses frères qu’elle/ils mérite/nt ?",
             "A-t-il/elle eu une hygiène corporelle et dentaire irréprochable sans qu’il soit nécessaire de le menacer de privation de sa patisserie préférée pendant 7 ans (… de malheur 😢) ?",
-            "A-t-il/elle été bien actif c’est-à-dire au moins 1h par jour avec parfois des activités intenses ?",
-            "A-t-il/elle fait régulièrement preuve de courage comme il en a coutume ?",
+            "A-t-il/elle été bien actif, c’est-à-dire bouger au moins 1h par jour avec parfois des activités intenses ?",
+            "A-t-il/elle fait régulièrement preuve de courage comme il/elle en a coutume ?",
             "A-t-il/elle réussi à exprimer ses besoins de façon calme et posée ?"
         ];
 
@@ -192,9 +192,9 @@
             if (allYes) {
                 finalText.innerHTML = `Encore une semaine où ${childName} a eu un comportement parfait ! Il/elle mérite une semaine à l'hôtel 5 étoiles avec tous ses meilleurs ami.e.s ou alors s'il ou elle préfère tout autre cadeau de son choix ! 🎁😇`;
             } else if (allNo) {
-                finalText.innerHTML = `Franchement, c’est incompréhensible... ${childName} mérite un réconfort : un animal de compagnie, une carte de cinéma illimité ou son poids en cannelés ou en sa patisserie préférée 😢.`;
+                finalText.innerHTML = `Franchement, c’est incompréhensible... ${childName} mérite un réconfort car c'est une situation exceptionnelle : peux-être lui offrir un animal de compagnie, une carte de cinéma illimité ou son poids en cannelés ou en sa patisserie préférée 😢.`;
             } else {
-                finalText.innerHTML = `${childName} a été proche de la perfection et mérite un encouragement : vêtements, console ou week-end 🙏👏😇.`;
+                finalText.innerHTML = `${childName} a été proche de la perfection et mérite une nouvelle fois de solides encouragements : une tenue complète de ses rêves, une console dernier cri pour jouer avec ses ami.e.s et frères/soeurs ou un week-end au bord de la mer avec ballade en bateau 🙏👏😇.`;
             }
 
             // Afficher la question d'accord avec la recommandation
@@ -207,7 +207,7 @@
 
         function agree() {
             let responseText = document.getElementById("response-text");
-            responseText.innerHTML = `Vous êtes un très honorable membre de la Famille et comme d'habitude votre bienveillance, l'une de vos inombrables qualités, émane avec discretion, mais efficacité, de tous les pores de votre peau. Votre présence est une joie pour chacun 🥳😊🥰 🥳.`;
+            responseText.innerHTML = `Vous confirmez encore que vous êtes décidémment un très honorable membre de la Famille et que, comme d'habitude, votre bienveillance, l'une de vos inombrables qualités, émane de tous les pores de votre peau. Votre présence est une joie profonde pour chacun 🥳😊🥰 🥳.`;
             document.getElementById("final-response").classList.remove("hidden");
             document.getElementById("agree-question").classList.add("hidden");
             document.getElementById("final-action").classList.remove("hidden");
@@ -218,7 +218,7 @@
 
         function disagree() {
             let responseText = document.getElementById("response-text");
-            responseText.innerHTML = `Nous sommes attristé par votre réponse. Rencontrez-vous de graves problèmes personnels avtuellement car vous ne nous avez pas habitué à une telle attitude ? Nous vous proposons de contacter le conseil de famille, qui saura trouver les fonds nécessaires (en sollicitant la solidarité familiale) pour vous offrir une psychothérapie car être aussi peu positif est sûrement le signe que vous êtes en grande difficulté et nous ne voulons pas que cela dure 🥰.`;
+            responseText.innerHTML = `Nous sommes attristé par votre réponse. Rencontrez-vous de graves problèmes personnels actuellement ? Nous nous interrogeons car vous ne nous avez pas habitué à une telle attitude ? Nous vous proposons de contacter le conseil de famille, qui saura trouver les fonds nécessaires pour vous offrir une psychothérapie car être aussi peu positif est sûrement le signe que vous êtes en grande difficulté et nous ne voulons pas que cela dure 🥰.`;
             document.getElementById("final-response").classList.remove("hidden");
             document.getElementById("agree-question").classList.add("hidden");
             document.getElementById("final-action").classList.remove("hidden");

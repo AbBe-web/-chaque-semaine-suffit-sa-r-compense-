@@ -142,22 +142,27 @@
         ];
 
         function showQuestion() {
-            if (currentQuestion < questions.length) {
-                let questionnaire = document.getElementById("questionnaire");
-                questionnaire.innerHTML = ""; // Clear previous questions
-                let questionElement = document.createElement("div");
-                questionElement.classList.add("question");
-                questionElement.innerHTML = `<p>${questions[currentQuestion].replace("{name}", childName)}</p>
-                                             <button onclick="recordAnswer(true)">Oui</button>
-                                             <button onclick="recordAnswer(false)">Non</button>`;
-                questionnaire.appendChild(questionElement);
+        if (currentQuestion < questions.length) {
+            let questionnaire = document.getElementById("questionnaire");
 
-                // Scroll the new question into view, with smooth scroll and at the top of the page
-                questionElement.scrollIntoView({ behavior: "smooth", block: "start" });
-            } else {
-                showFinalMessage();
-            }
+            // Créer un nouvel élément pour chaque question
+            let questionElement = document.createElement("div");
+            questionElement.classList.add("question");
+            questionElement.innerHTML = `<p>${questions[currentQuestion].replace("{name}", childName)}</p>
+                                         <button onclick="recordAnswer(true)">Oui</button>
+                                         <button onclick="recordAnswer(false)">Non</button>`;
+
+            // Ajouter la nouvelle question à l'élément questionnaire sans supprimer les précédentes
+            questionnaire.appendChild(questionElement);
+
+            // Scroller vers la nouvelle question
+            questionElement.scrollIntoView({ behavior: "smooth", block: "start" });
+
+            currentQuestion++;
+        } else {
+            showFinalMessage();
         }
+    }
 
         function recordAnswer(answer) {
             answers.push(answer);

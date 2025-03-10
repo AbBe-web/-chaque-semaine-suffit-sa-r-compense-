@@ -190,9 +190,9 @@
             let allNo = answers.every(a => !a);
 
             if (allYes) {
-                finalText.innerHTML = `Encore une semaine où ${childName} a eu un comportement parfait ! Il mérite une semaine à l'hôtel 5 étoiles ! 🎁😇`;
+                finalText.innerHTML = `Encore une semaine où ${childName} a eu un comportement parfait ! Il/elle mérite une semaine à l'hôtel 5 étoiles avec tous ses meilleurs ami.e.s ou alors s'il ou elle préfère tout autre cadeau de son choix ! 🎁😇`;
             } else if (allNo) {
-                finalText.innerHTML = `Franchement, c’est incompréhensible... ${childName} mérite un réconfort : un animal de compagnie, cinéma ou cannelés 😢.`;
+                finalText.innerHTML = `Franchement, c’est incompréhensible... ${childName} mérite un réconfort : un animal de compagnie, une carte de cinéma illimité ou son poids en cannelés ou en sa patisserie préférée 😢.`;
             } else {
                 finalText.innerHTML = `${childName} a été proche de la perfection et mérite un encouragement : vêtements, console ou week-end 🙏👏😇.`;
             }
@@ -207,7 +207,7 @@
 
         function agree() {
             let responseText = document.getElementById("response-text");
-            responseText.innerHTML = `Vous êtes un très honorable membre de la Famille. Votre présence est une joie pour chacun 🥳😊🥰 🥳.`;
+            responseText.innerHTML = `Vous êtes un très honorable membre de la Famille et comme d'habitude votre bienveillance, l'une de vos inombrables qualités émane avec discretion de tous les pores de votre peau. Votre présence est une joie pour chacun 🥳😊🥰 🥳.`;
             document.getElementById("final-response").classList.remove("hidden");
             document.getElementById("agree-question").classList.add("hidden");
             document.getElementById("final-action").classList.remove("hidden");
@@ -218,7 +218,7 @@
 
         function disagree() {
             let responseText = document.getElementById("response-text");
-            responseText.innerHTML = `Je vous propose de contacter le conseil de famille, qui saura trouver les fonds nécessaires (en sollicitant la solidarité familiale) pour vous payer une psychothérapie car être aussi peu positif est sûrement le signe que vous êtes en difficulté et cela nous cause une grande peine 🥰.`;
+            responseText.innerHTML = `Nous sommes attristé par votre réponse. Rencontrez-vous de graves problèmes personnels avtuellement ? Nous vous proposons de contacter le conseil de famille, qui saura trouver les fonds nécessaires (en sollicitant la solidarité familiale) pour vous payer une psychothérapie car être aussi peu positif est sûrement le signe que vous êtes en difficulté et cela nous cause une grande peine 🥰.`;
             document.getElementById("final-response").classList.remove("hidden");
             document.getElementById("agree-question").classList.add("hidden");
             document.getElementById("final-action").classList.remove("hidden");

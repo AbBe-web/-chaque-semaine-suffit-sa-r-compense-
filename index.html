@@ -99,6 +99,10 @@
             <button onclick="startQuestions()">Je suis prêt</button>
         </div>
 
+        <div id="ready-message" class="hidden">
+            <p>Décidément, votre vivacité n'est pas une légende ! Nous sommes vraiment impressionné. Allez trêve de bavardage, c'est parti !</p>
+        </div>
+
         <div id="questionnaire" class="hidden"></div>
 
         <div id="final-message" class="hidden">
@@ -144,6 +148,7 @@
         function startQuestions() {
             document.getElementById("start").classList.add("hidden");
             document.getElementById("not-ready").classList.add("hidden");
+            document.getElementById("ready-message").classList.remove("hidden");
             document.getElementById("questionnaire").classList.remove("hidden");
             showQuestion();
         }
